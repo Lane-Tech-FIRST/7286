@@ -117,7 +117,8 @@ public class TeleOp7286 extends OpMode
     @Override
     public void start()
     {
-        runtime.reset();            }
+        runtime.reset();            
+	}
 
 
     @Override
@@ -309,6 +310,26 @@ public class TeleOp7286 extends OpMode
 
         }
     }
+	
+	public void liftArms(double speed, double inches)
+	{
+        // Determine new target position, and pass to motor controller
+        int newLiftTarget = robot.lift.getCurrentPosition() + (int) (inches * COUNTS_PER_INCH);
+
+        robot.lift.setTargetPosition(newLiftTarget);
+
+        // Turn On RUN_TO_POSITION
+        robot.lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // Start motion
+        robot.lift.setPower(Math.abs(speed));
+
+        // Stop all motion - Is this line even necessary?
+        //robot.lift.setPower(0);
+
+        // Turn off RUN_TO_POSITION
+        robot.lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);        
+	}
 
 
 
