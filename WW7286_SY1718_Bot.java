@@ -16,7 +16,6 @@ public class WW7286_SY1718_Bot
 
     public DcMotor frontIntake;
     public DcMotor lift;
-	public DcMotor boo;
 
     /**
      * Constructor for Bot
